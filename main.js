@@ -7,9 +7,9 @@ async function searchGif(palabra){
   const result = await response.json();
   console.log(result);
   const gifs = result.data.map((g, index) => ({
+    title: g.title,
     id: g.id,
     url: g.images.fixed_height.url,
-    title: g.title,
  }));
   renderGif(gifs);
 } catch(error){
@@ -20,9 +20,9 @@ console.error('Error al obtener GIF', error);
 function renderGif(gifs) {
   const gifListHTML = gifs.map((gif) => `
   <div>
+  <div> ${gif.title}</div>
   <div> ${gif.id}</div>
   <img src="${gif.url}"alt=gifurl">
-  <div> ${gif.title}</div>
   </div>
   `
   )
